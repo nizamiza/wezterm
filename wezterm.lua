@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local colors = require("colors")
 
 local config = {}
 
@@ -8,25 +9,22 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-local function get_appearance()
-	if wezterm.gui then
-		return wezterm.gui.get_appearance()
-	end
-	return "Dark"
-end
+local color = colors.get_color_table()
 
-local function get_color_scheme_by_appearance(appearance)
-	if appearance:find("Dark") then
-		return "One Dark (Gogh)"
-	else
-		return "One Light (Gogh)"
-	end
-end
+local inactive_tab = {
+	bg_color = colors.hsl(color.surface),
+	fg_color = colors.hsl(colors.shift_hsl_color_lightness(color.text, 35)),
+}
+
+local inactive_tab_hover = {
+	bg_color = colors.hsl(colors.shift_hsl_color_lightness(color.surface, 3)),
+	fg_color = colors.hsl(colors.shift_hsl_color_lightness(color.text, 15)),
+}
 
 config.send_composed_key_when_left_alt_is_pressed = true
 config.send_composed_key_when_right_alt_is_pressed = false
 
-config.color_scheme = get_color_scheme_by_appearance(get_appearance())
+config.color_scheme = colors.get_color_scheme()
 config.font = wezterm.font("JetBrains Mono", { weight = "DemiBold" })
 config.font_size = 14
 
@@ -46,6 +44,26 @@ config.keys = {
 		key = "w",
 		mods = "CMD",
 		action = wezterm.action.CloseCurrentPane({ confirm = true }),
+	},
+}
+
+config.window_frame = {
+	font = wezterm.font("Helvetica Neue", { weight = "DemiBold" }),
+	font_size = 12,
+	active_titlebar_bg = colors.hsl(color.surface),
+	inactive_titlebar_bg = colors.hsl(color.surface),
+}
+
+config.colors = {
+	tab_bar = {
+		active_tab = {
+			bg_color = colors.hsl(colors.shift_hsl_color_lightness(color.surface, 7)),
+			fg_color = colors.hsl(color.text),
+		},
+		inactive_tab = inactive_tab,
+		inactive_tab_hover = inactive_tab_hover,
+		new_tab = inactive_tab,
+		new_tab_hover = inactive_tab_hover,
 	},
 }
 
