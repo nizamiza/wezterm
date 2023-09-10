@@ -33,14 +33,19 @@ config.font_size = 14
 config.initial_rows = 60
 config.initial_cols = 165
 
+-- Fix for Stage Manager lag
 config.window_background_opacity = 0.999
 
 config.keys = {
-	-- This will create a new split and run your default program inside it
 	{
 		key = "d",
 		mods = "SUPER",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "w",
+		mods = "CMD",
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
 	},
 }
 
