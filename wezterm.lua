@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
-local colors = require("colors")
-local keys = require("keys")
+
+local colors = require("lua.colors")
+local keys = require("lua.keys")
 
 local config = {}
 
