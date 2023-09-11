@@ -60,6 +60,7 @@ config.colors = {
 			bg_color = colors.hsl(colors.shift_hsl_color_lightness(color.surface, 7)),
 			fg_color = colors.hsl(color.text),
 		},
+		inactive_tab_edge = colors.hsl(colors.shift_hsl_color_lightness(color.text, 60)),
 		inactive_tab = inactive_tab,
 		inactive_tab_hover = inactive_tab_hover,
 		new_tab = inactive_tab,
