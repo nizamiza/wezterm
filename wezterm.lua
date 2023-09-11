@@ -1,6 +1,13 @@
 local wezterm = require("wezterm")
 local colors = require("colors")
 
+wezterm.on("format-tab-title", function(tab)
+	local current_dir = tab.active_pane.current_working_dir
+	local i, j = string.find(current_dir, "/[a-zA-Z _-0-9]+$")
+
+	return string.sub(current_dir, i + 1, j)
+end)
+
 local config = {}
 
 -- In newer versions of wezterm, use the config_builder which will
