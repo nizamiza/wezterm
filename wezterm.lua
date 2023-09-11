@@ -12,9 +12,9 @@ end
 
 wezterm.on("format-tab-title", function(tab)
 	local current_dir = tab.active_pane.current_working_dir
-	local i, j = string.find(current_dir, "/[a-zA-Z _-0-9]+$")
+	local i, j = current_dir:find("/[a-zA-Z _-0-9]+$")
 
-	local current_folder = string.sub(current_dir, i + 1, j)
+	local current_folder = current_dir:sub(i + 1, j)
 	local index = tab.tab_index + 1
 
 	return index .. ": " .. current_folder

@@ -1,21 +1,28 @@
+--- @alias Appearance "Light" | "Dark"
+--- @alias Color { h: number, s: number, l: number }
+
 local wezterm = require("wezterm")
 
+--- @return Appearance
 local function get_appearance()
 	return wezterm.gui and wezterm.gui.get_appearance() or "Dark"
 end
 
 local function is_dark_appearance()
-	return get_appearance():find("Dark")
+	return get_appearance():find("Dark") ~= nil
 end
 
 local function get_color_scheme()
 	return is_dark_appearance() and "One Dark (Gogh)" or "One Light (Gogh)"
 end
 
+--- @param color Color
 local function hsl(color)
 	return "hsl(" .. color.h .. " " .. color.s .. "% " .. color.l .. "%)"
 end
 
+--- @param color Color
+--- @param delta number
 local function shift_hsl_color_lightness(color, delta)
 	local is_dark = is_dark_appearance()
 	local coeff = is_dark and 1 or -1
@@ -27,6 +34,7 @@ local function shift_hsl_color_lightness(color, delta)
 	}
 end
 
+--- @return { surface: Color, text: Color }
 local function get_color_table()
 	local is_dark = is_dark_appearance()
 
