@@ -1,12 +1,6 @@
 local wezterm = require("wezterm")
 local colors = require("colors")
-
-wezterm.on("format-tab-title", function(tab)
-	local current_dir = tab.active_pane.current_working_dir
-	local i, j = string.find(current_dir, "/[a-zA-Z _-0-9]+$")
-
-	return string.sub(current_dir, i + 1, j)
-end)
+local keys = require("keys")
 
 local config = {}
 
@@ -15,6 +9,16 @@ local config = {}
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
+
+wezterm.on("format-tab-title", function(tab)
+	local current_dir = tab.active_pane.current_working_dir
+	local i, j = string.find(current_dir, "/[a-zA-Z _-0-9]+$")
+
+	local current_folder = string.sub(current_dir, i + 1, j)
+	local index = tab.tab_index + 1
+
+	return index .. ": " .. current_folder
+end)
 
 local color = colors.get_color_table()
 
@@ -41,18 +45,7 @@ config.initial_cols = 165
 -- Fix for Stage Manager lag
 config.window_background_opacity = 0.999
 
-config.keys = {
-	{
-		key = "d",
-		mods = "SUPER",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "w",
-		mods = "CMD",
-		action = wezterm.action.CloseCurrentPane({ confirm = true }),
-	},
-}
+config.keys = keys
 
 config.window_frame = {
 	font = wezterm.font("Helvetica Neue", { weight = "DemiBold" }),
