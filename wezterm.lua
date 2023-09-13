@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 
 local colors = require("lua.colors")
 local keys = require("lua.keys")
+local events = require("lua.events")
 
 local config = {}
 
@@ -11,15 +12,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-wezterm.on("format-tab-title", function(tab)
-	local current_dir = tab.active_pane.current_working_dir
-	local i, j = current_dir:find("/[a-zA-Z _-0-9]+$")
-
-	local current_folder = current_dir:sub(i + 1, j)
-	local index = tab.tab_index + 1
-
-	return index .. ": " .. current_folder
-end)
+wezterm.on("format-tab-title", events.format_tab_title)
 
 local color = colors.get_color_table()
 
