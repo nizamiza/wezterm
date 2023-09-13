@@ -4,4 +4,4 @@ My WezTerm config 🙃
 
 ## References
 
-- [WezTerm configuration](https://wezfurlong.org/wezterm/config)
+- [WezTerm configuration](https://wezfurlong.org/wezterm/config/files.html)
