@@ -13,12 +13,12 @@ return {
 	},
 	{
 		key = "RightArrow",
-		mods = "CTRL|SHIFT",
+		mods = "CTRL|ALT|SHIFT",
 		action = wezterm.action.MoveTabRelative(1),
 	},
 	{
 		key = "LeftArrow",
-		mods = "CTRL|SHIFT",
+		mods = "CTRL|ALT|SHIFT",
 		action = wezterm.action.MoveTabRelative(-1),
 	},
 	{
