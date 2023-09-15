@@ -31,4 +31,9 @@ return {
 		mods = "OPT",
 		action = wezterm.action.ActivateTabRelative(-1),
 	},
+	{
+		key = "Backspace",
+		mods = "SHIFT",
+		action = wezterm.action.SendKey({ key = "Backspace" }),
+	},
 }
