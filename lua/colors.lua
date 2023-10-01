@@ -34,7 +34,7 @@ local function shift_hsl_color_lightness(color, delta)
 	}
 end
 
---- @return { surface: Color, text: Color }
+--- @return { surface: Color, text: Color, ssh: Color }
 local function get_color_table()
 	local is_dark = is_dark_appearance()
 
@@ -55,6 +55,11 @@ local function get_color_table()
 			h = 0,
 			s = 0,
 			l = l(94),
+		},
+		ssh = {
+			h = 279,
+			s = 70,
+			l = l(is_dark and 36 or 28),
 		},
 	}
 end
