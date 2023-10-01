@@ -54,7 +54,7 @@ config.tab_max_width = 48
 
 config.colors = {
 	tab_bar = {
-		background = colors.hsl(color.surface),
+		background = colors.hsl(colors.shift_hsl_color_lightness(color.surface, 5)),
 		active_tab = {
 			bg_color = colors.hsl(colors.shift_hsl_color_lightness(color.surface, 7)),
 			fg_color = colors.hsl(color.text),

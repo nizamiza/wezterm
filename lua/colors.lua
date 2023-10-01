@@ -24,8 +24,7 @@ end
 --- @param color Color
 --- @param delta number
 local function shift_hsl_color_lightness(color, delta)
-	local is_dark = is_dark_appearance()
-	local coeff = is_dark and 1 or -1
+	local coeff = is_dark_appearance() and 1 or -1
 
 	return {
 		h = color.h,
@@ -36,12 +35,9 @@ end
 
 --- @return { surface: Color, text: Color, ssh: Color }
 local function get_color_table()
-	local is_dark = is_dark_appearance()
-
-	local diff = is_dark and 0 or 100
-	local coeff = is_dark and -1 or 1
-
 	local function l(value)
+		local coeff = is_dark_appearance() and -1 or 1
+		local diff = is_dark_appearance() and 0 or 100
 		return (diff - value) * coeff
 	end
 
@@ -49,7 +45,7 @@ local function get_color_table()
 		surface = {
 			h = 220,
 			s = 9,
-			l = l(is_dark and 21 or 10),
+			l = l(is_dark_appearance() and 21 or 10),
 		},
 		text = {
 			h = 0,
@@ -57,9 +53,9 @@ local function get_color_table()
 			l = l(94),
 		},
 		ssh = {
-			h = 279,
-			s = 70,
-			l = l(is_dark and 36 or 18),
+			h = 338,
+			s = 80,
+			l = l(is_dark_appearance() and 32 or 28),
 		},
 	}
 end

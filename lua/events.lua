@@ -6,7 +6,6 @@ local function get_path_last_segment(path)
 	return path:sub(i + 1, j)
 end
 
-local color = colors.get_color_table()
 local default_pad = " "
 
 --- @param value string
@@ -42,6 +41,7 @@ return {
 
 		local is_ssh = process_name == "ssh"
 
+		local color = colors.get_color_table()
 		local default_active_bg_color = config.colors.tab_bar.active_tab.bg_color
 		local default_inactive_bg_color = config.colors.tab_bar.inactive_tab.bg_color
 
@@ -52,12 +52,29 @@ return {
 		local bg_color = is_ssh and (is_active and active_ssh_bg_color or inactive_ssh_bg_color)
 			or (is_active and default_active_bg_color or default_inactive_bg_color)
 
+		local default_active_fg_color = config.colors.tab_bar.active_tab.fg_color
+		local default_inactive_fg_color = config.colors.tab_bar.inactive_tab.fg_color
+
+		local ssh_fg_color = color.text
+
+		local active_ssh_fg_color = colors.hsl(ssh_fg_color)
+		local inactive_ssh_fg_color = colors.hsl(colors.shift_hsl_color_lightness(ssh_fg_color, 30))
+
+		local fg_color = is_ssh and (is_active and active_ssh_fg_color or inactive_ssh_fg_color)
+			or (is_active and default_active_fg_color or default_inactive_fg_color)
+
 		local default_title = index .. ": " .. "[" .. process_name .. "] " .. current_folder
+
 		local ssh_title = index .. ": " .. tab.window_title
 
 		local title = is_ssh and ssh_title or default_title
 
 		return {
+			{
+				Foreground = {
+					Color = fg_color,
+				},
+			},
 			{
 				Background = {
 					Color = bg_color,
