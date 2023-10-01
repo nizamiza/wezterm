@@ -41,15 +41,20 @@ config.window_background_opacity = 0.999
 
 config.keys = keys
 
-config.window_frame = {
-	font = wezterm.font("Helvetica Neue", { weight = "DemiBold" }),
-	font_size = 12,
-	active_titlebar_bg = colors.hsl(color.surface),
-	inactive_titlebar_bg = colors.hsl(color.surface),
-}
+-- Fancy tab bar config
+-- config.window_frame = {
+-- 	font = wezterm.font("Helvetica Neue", { weight = "DemiBold" }),
+-- 	font_size = 12,
+-- 	active_titlebar_bg = colors.hsl(color.surface),
+-- 	inactive_titlebar_bg = colors.hsl(color.surface),
+-- }
+
+config.use_fancy_tab_bar = false
+config.tab_max_width = 48
 
 config.colors = {
 	tab_bar = {
+		background = colors.hsl(color.surface),
 		active_tab = {
 			bg_color = colors.hsl(colors.shift_hsl_color_lightness(color.surface, 7)),
 			fg_color = colors.hsl(color.text),

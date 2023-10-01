@@ -59,7 +59,7 @@ local function get_color_table()
 		ssh = {
 			h = 279,
 			s = 70,
-			l = l(is_dark and 36 or 28),
+			l = l(is_dark and 36 or 18),
 		},
 	}
 end
