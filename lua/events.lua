@@ -20,7 +20,7 @@ end
 --- @param suffix string|nil
 local function limit_string(value, max_length, suffix)
 	max_length = max_length or 48
-	suffix = suffix or "..."
+	suffix = suffix or ".."
 
 	if value:len() <= max_length then
 		return value
@@ -63,9 +63,9 @@ return {
 		local fg_color = is_ssh and (is_active and active_ssh_fg_color or inactive_ssh_fg_color)
 			or (is_active and default_active_fg_color or default_inactive_fg_color)
 
-		local default_title = index .. ": " .. "[" .. process_name .. "] " .. current_folder
+		local default_title = index .. ":" .. "[" .. process_name .. "] " .. current_folder
 
-		local ssh_title = index .. ": " .. tab.window_title
+		local ssh_title = index .. ":" .. tab.window_title
 
 		local title = is_ssh and ssh_title or default_title
 
