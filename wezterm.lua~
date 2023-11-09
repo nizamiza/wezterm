@@ -26,8 +26,6 @@ local inactive_tab_hover = {
 	fg_color = colors.hsl(colors.shift_hsl_color_lightness(color.text, 15)),
 }
 
-config.audible_bell = "Disabled"
-
 config.send_composed_key_when_left_alt_is_pressed = true
 config.send_composed_key_when_right_alt_is_pressed = false
 
