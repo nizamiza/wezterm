@@ -32,6 +32,16 @@ return {
 		action = wezterm.action.ActivateTabRelative(-1),
 	},
 	{
+		key = "LeftArrow",
+		mods = "OPT",
+		action = wezterm.action({ SendString = "\x1bb" }),
+	},
+	{
+		key = "RightArrow",
+		mods = "OPT",
+		action = wezterm.action({ SendString = "\x1bf" }),
+	},
+	{
 		key = "Backspace",
 		mods = "SHIFT",
 		action = wezterm.action.SendKey({ key = "Backspace" }),
