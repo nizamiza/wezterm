@@ -14,7 +14,7 @@ end
 
 local function get_color_scheme()
   -- return is_dark_appearance() and "Modus-Vivendi" or "Modus-Operandi"
-  return is_dark_appearance() and "Default (dark) (terminal.sexy)" or "Default (light) (terminal.sexy)"
+  return is_dark_appearance() and "Default (dark) (terminal.sexy)" or "One Light (Gogh)"
 end
 
 --- @param color Color
