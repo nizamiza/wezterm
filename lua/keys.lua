@@ -1,55 +1,64 @@
 local wezterm = require("wezterm")
+local os = require("lua.os")
+
+local ctrl = os.is_windows() and "CTRL" or "CMD"
+local opt = os.is_windows() and "ALT" or "OPT"
 
 return {
-	{
-		key = "d",
-		mods = "SUPER",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "w",
-		mods = "CMD",
-		action = wezterm.action.CloseCurrentPane({ confirm = true }),
-	},
-	{
-		key = "RightArrow",
-		mods = "CTRL|ALT|SHIFT",
-		action = wezterm.action.MoveTabRelative(1),
-	},
-	{
-		key = "LeftArrow",
-		mods = "CTRL|ALT|SHIFT",
-		action = wezterm.action.MoveTabRelative(-1),
-	},
-	{
-		key = "RightArrow",
-		mods = "SHIFT|OPT",
-		action = wezterm.action.ActivateTabRelative(1),
-	},
-	{
-		key = "LeftArrow",
-		mods = "SHIFT|OPT",
-		action = wezterm.action.ActivateTabRelative(-1),
-	},
-	{
-		key = "LeftArrow",
-		mods = "OPT",
-		action = wezterm.action({ SendString = "\x1bb" }),
-	},
-	{
-		key = "RightArrow",
-		mods = "OPT",
-		action = wezterm.action({ SendString = "\x1bf" }),
-	},
-	{
-		key = "Backspace",
-		mods = "SHIFT",
-		action = wezterm.action.SendKey({ key = "Backspace" }),
-	},
+  {
+    key = "d",
+    mods = "SHIFT|" .. ctrl,
+    action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+  },
+  {
+    key = "w",
+    mods = ctrl,
+    action = wezterm.action.CloseCurrentPane({ confirm = true }),
+  },
+  {
+    key = "t",
+    mods = ctrl,
+    action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }),
+  },
+  {
+    key = "RightArrow",
+    mods = "CTRL|SHIFT|" .. opt,
+    action = wezterm.action.MoveTabRelative(1),
+  },
+  {
+    key = "LeftArrow",
+    mods = "CTRL|SHIFT|" .. opt,
+    action = wezterm.action.MoveTabRelative(-1),
+  },
+  {
+    key = "RightArrow",
+    mods = "CTRL|" .. opt,
+    action = wezterm.action.ActivateTabRelative(1),
+  },
+  {
+    key = "LeftArrow",
+    mods = "CTRL|" .. opt,
+    action = wezterm.action.ActivateTabRelative(-1),
+  },
+  {
+    key = "LeftArrow",
+    mods = opt,
+    action = wezterm.action({ SendString = "\x1bb" }),
+  },
+  {
+    key = "RightArrow",
+    mods = opt,
+    action = wezterm.action({ SendString = "\x1bf" }),
+  },
+  {
+    key = "Backspace",
+    mods = "SHIFT",
+    action = wezterm.action.SendKey({ key = "Backspace" }),
+  },
   {
     key = "r",
     mods = "CTRL|SHIFT",
-    action = wezterm.action.PromptInputLine {
+    action = wezterm.action.PromptInputLine({
       description = "Enter new name for the current tab",
       action = wezterm.action_callback(function(window, pane, line)
         -- line will be `nil` if they hit escape without entering anything
@@ -59,6 +68,6 @@ return {
           window:active_tab():set_title(line)
         end
       end),
-    },
+    }),
   },
 }

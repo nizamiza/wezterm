@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 
 local colors = require("lua.colors")
 local keys = require("lua.keys")
+local os = require("lua.os")
 
 local config = {}
 
@@ -9,6 +10,10 @@ local config = {}
 -- help provide clearer error messages
 if wezterm.config_builder then
   config = wezterm.config_builder()
+end
+
+if os.is_windows() then
+  config.default_prog = { "powershell.exe" }
 end
 
 local color = colors.get_color_table()
@@ -29,12 +34,16 @@ config.send_composed_key_when_left_alt_is_pressed = true
 config.send_composed_key_when_right_alt_is_pressed = false
 
 config.color_scheme = colors.get_color_scheme()
-config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "DemiBold" })
-config.font_size = 15
+config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = os.is_windows() and "Regular" or "DemiBold" })
+config.font_size = os.is_windows() and 11 or 15
 
-config.initial_rows = 60
-config.initial_cols = 190
-
+if os.is_windows() then
+  config.initial_rows = 40
+  config.initial_cols = 167
+else
+  config.initial_rows = 60
+  config.initial_cols = 190
+end
 -- Fix for Stage Manager lag
 config.window_background_opacity = 0.92
 config.macos_window_background_blur = 40
