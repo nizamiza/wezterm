@@ -4,7 +4,8 @@ local os = require("lua.os")
 local ctrl = os.is_windows() and "CTRL" or "CMD"
 local opt = os.is_windows() and "ALT" or "OPT"
 
-return {
+-- base navigation keys
+local keys = {
   {
     key = "d",
     mods = "SHIFT|" .. ctrl,
@@ -12,7 +13,7 @@ return {
   },
   {
     key = "w",
-    mods = ctrl,
+    mods = "SHIFT|" .. ctrl,
     action = wezterm.action.CloseCurrentPane({ confirm = true }),
   },
   {
@@ -71,3 +72,14 @@ return {
     }),
   },
 }
+
+-- insert tab navigation keys
+for i = 1, 9 do
+  table.insert(keys, {
+    key = tostring(i),
+    mods = "CTRL",
+    action = wezterm.action.ActivateTab(i == 9 and -1 or i - 1),
+  })
+end
+
+return keys

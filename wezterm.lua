@@ -36,6 +36,7 @@ config.send_composed_key_when_right_alt_is_pressed = false
 config.color_scheme = colors.get_color_scheme()
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = os.is_windows() and "Regular" or "DemiBold" })
 config.font_size = os.is_windows() and 11 or 15
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 if os.is_windows() then
   config.initial_rows = 40
