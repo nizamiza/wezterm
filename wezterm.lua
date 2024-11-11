@@ -16,6 +16,9 @@ if os.is_windows() then
   config.default_prog = { "powershell.exe" }
 end
 
+-- Default shell
+config.default_prog = { "/opt/homebrew/bin/nu" }
+
 local color = colors.get_color_table()
 
 local inactive_tab = {
@@ -35,7 +38,7 @@ config.send_composed_key_when_right_alt_is_pressed = false
 
 config.color_scheme = colors.get_color_scheme()
 config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = os.is_windows() and "Regular" or "DemiBold" })
-config.font_size = os.is_windows() and 11 or 15
+config.font_size = os.is_windows() and 11 or 16
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 if os.is_windows() then
@@ -46,7 +49,7 @@ else
   config.initial_cols = 190
 end
 -- Fix for Stage Manager lag
-config.window_background_opacity = 0.92
+config.window_background_opacity = 0.88
 config.macos_window_background_blur = 40
 
 config.keys = keys

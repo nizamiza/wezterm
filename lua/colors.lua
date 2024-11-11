@@ -7,7 +7,8 @@ local M = {}
 
 --- @return Appearance
 function M.get_appearance()
-  return wezterm.gui and wezterm.gui.get_appearance() or "Dark"
+  return "Dark"
+  -- return wezterm.gui and wezterm.gui.get_appearance() or "Dark"
 end
 
 function M.is_dark_appearance()
