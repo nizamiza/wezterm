@@ -46,7 +46,7 @@ if os.is_windows() then
   config.initial_cols = 167
 else
   config.initial_rows = 60
-  config.initial_cols = 190
+  config.initial_cols = 160
 end
 -- Fix for Stage Manager lag
 config.window_background_opacity = 0.88
