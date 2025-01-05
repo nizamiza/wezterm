@@ -37,7 +37,7 @@ config.send_composed_key_when_left_alt_is_pressed = true
 config.send_composed_key_when_right_alt_is_pressed = false
 
 config.color_scheme = colors.get_color_scheme()
-config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = os.is_windows() and "Regular" or "DemiBold" })
+config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular" })
 config.font_size = os.is_windows() and 11 or 16
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
@@ -49,17 +49,16 @@ else
   config.initial_cols = 160
 end
 -- Fix for Stage Manager lag
-config.window_background_opacity = 0.88
+config.window_background_opacity = 0.94
 config.macos_window_background_blur = 40
 
 config.keys = keys
 
--- Fancy tab bar config
 -- config.window_frame = {
--- 	font = wezterm.font("Helvetica Neue", { weight = "DemiBold" }),
--- 	font_size = 12,
--- 	active_titlebar_bg = colors.hsl(color.surface),
--- 	inactive_titlebar_bg = colors.hsl(color.surface),
+--   font = wezterm.font("Helvetica Neue", { weight = "DemiBold" }),
+--   font_size = 12,
+--   active_titlebar_bg = colors.hsl(color.surface),
+--   inactive_titlebar_bg = colors.hsl(color.surface),
 -- }
 
 config.use_fancy_tab_bar = false
