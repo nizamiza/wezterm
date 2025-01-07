@@ -12,12 +12,12 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+-- Default shell
 if os.is_windows() then
   config.default_prog = { "powershell.exe" }
+else
+  config.default_prog = { "/opt/homebrew/bin/nu" }
 end
-
--- Default shell
-config.default_prog = { "/opt/homebrew/bin/nu" }
 
 local color = colors.get_color_table()
 
