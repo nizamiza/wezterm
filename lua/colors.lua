@@ -16,8 +16,7 @@ function M.is_dark_appearance()
 end
 
 function M.get_color_scheme()
-  -- return is_dark_appearance() and "Modus-Vivendi" or "Modus-Operandi"
-  return M.is_dark_appearance() and "Catppuccin Mocha" or "One Light (Gogh)"
+  return M.is_dark_appearance() and "Poimandres" or "Gruvbox (Gogh)"
 end
 
 --- @param color Color
