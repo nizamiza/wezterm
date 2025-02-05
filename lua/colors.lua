@@ -1,14 +1,14 @@
 --- @alias Appearance "Light" | "Dark"
 --- @alias Color { h: number, s: number, l: number }
 
-local wezterm = require("wezterm")
+-- local wezterm = require("wezterm")
 
 local M = {}
 
 --- @return Appearance
 function M.get_appearance()
-  return "Dark"
   -- return wezterm.gui and wezterm.gui.get_appearance() or "Dark"
+  return "Dark"
 end
 
 function M.is_dark_appearance()
@@ -16,7 +16,7 @@ function M.is_dark_appearance()
 end
 
 function M.get_color_scheme()
-  return M.is_dark_appearance() and "Poimandres" or "Gruvbox (Gogh)"
+  return M.is_dark_appearance() and "DanQing (base16)" or "Github Light (Gogh)"
 end
 
 --- @param color Color
@@ -46,7 +46,7 @@ function M.get_color_table()
 
   return {
     surface = {
-      h = 220,
+      h = 160,
       s = 9,
       l = l(M.is_dark_appearance() and 21 or 10),
     },
